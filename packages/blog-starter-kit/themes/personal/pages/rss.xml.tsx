@@ -22,7 +22,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 			notFound: true,
 		};
 	}
-	const allPosts = publication.posts.edges.map((edge) => edge.node);
+	const allPosts = publication.posts.edges.map((edge) => edge.node).filter(post => 
+			!post.tags?.some(tag => tag.name === 'unlisted')
+		);
 
 	const xml = constructRSSFeedFromPosts(
 		publication,

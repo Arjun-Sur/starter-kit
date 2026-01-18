@@ -72,7 +72,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({ params }) 
 		{
 			host: process.env.NEXT_PUBLIC_HASHNODE_PUBLICATION_HOST,
 			first: 20,
-			tagSlug: params.slug,
+			tagSlug: params?.slug === 'unlisted' ? '' : params.slug,
 		},
 	);
 
