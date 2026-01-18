@@ -50,7 +50,10 @@ export default function Index({ publication, initialPosts, initialPageInfo }: Pr
 			return;
 		}
 		const newPosts = data.publication.posts.edges.map((edge) => edge.node);
-		setPosts([...posts, ...newPosts]);
+		const filteredPosts = newPosts.filter(post => 
+			!post.tags?.some(tag => tag.name === 'unlisted')
+		);
+		setPosts([...posts, ...filteredPosts]);
 		setPageInfo(data.publication.posts.pageInfo);
 		setLoadedMore(true);
 	};
@@ -118,7 +121,9 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 			notFound: true,
 		};
 	}
-	const initialPosts = (publication.posts.edges ?? []).map((edge) => edge.node);
+	const initialPosts = (publication.posts.edges ?? []).map((edge) => edge.node).filter(post => 
+		!post.tags?.some(tag => tag.name === 'unlisted')
+	);
 
 	return {
 		props: {

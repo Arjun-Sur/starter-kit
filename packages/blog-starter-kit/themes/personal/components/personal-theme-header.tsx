@@ -70,17 +70,6 @@ export const PersonalHeader = () => {
 							href="/"
 							aria-label={`${publication.author.name}'s blog home page`}
 						>
-							{publication.author.profilePicture && (
-								<img
-									className="block h-8 w-8 rounded-full fill-current"
-									alt={publication.author.name}
-									src={resizeImage(publication.author.profilePicture, {
-										w: 400,
-										h: 400,
-										c: 'face',
-									})}
-								/>
-							)}
 							{publication.title}
 						</Link>
 					</h1>
