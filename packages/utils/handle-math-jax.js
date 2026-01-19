@@ -3,15 +3,15 @@ const handleMathJax = (rerun = false) => {
       return;
     }
   
-    const mathjaxScript = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js';
+    const mathjaxScript = 'https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js';
     if (!window.MathJax) {
       window.MathJax = {
         tex: {
           inlineMath: [['\\(', '\\)']],
-          "HTML-CSS": {
-             linebreaks: { automatic: true, width: "container" },
-          },
         },
+        output: {  
+            displayOverflow: 'linebreak',
+        }
       };
     }
   
@@ -21,11 +21,9 @@ const handleMathJax = (rerun = false) => {
       script.type = 'text/javascript';
       script.src = mathjaxScript;
       script.onload = function () {
-        window.MathJax && 'mathml2chtml' in window.MathJax && window.MathJax.mathml2chtml();
       };
       document.head.appendChild(script);
     } else if (rerun) {
-      window.MathJax && 'mathml2chtml' in window.MathJax && window.MathJax.mathml2chtml();
     }
 };
   
