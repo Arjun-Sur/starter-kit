@@ -10,8 +10,8 @@ const handleMathJax = (rerun = false) => {
           inlineMath: [['\\(', '\\)']],
         },
         output: {  
-            displayOverflow: 'linebreak',
-        }
+          displayOverflow: 'linebreak',
+        },
       };
     }
   
@@ -21,9 +21,11 @@ const handleMathJax = (rerun = false) => {
       script.type = 'text/javascript';
       script.src = mathjaxScript;
       script.onload = function () {
+        window.MathJax && window.MathJax.typeset();
       };
       document.head.appendChild(script);
     } else if (rerun) {
+        window.MathJax && window.MathJax.typeset();
     }
 };
   
