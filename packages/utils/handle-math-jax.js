@@ -8,6 +8,9 @@ const handleMathJax = (rerun = false) => {
       window.MathJax = {
         tex: {
           inlineMath: [['\\(', '\\)']],
+          "HTML-CSS": {
+             linebreaks: { automatic: true, width: "container" },
+          },
         },
       };
     }
